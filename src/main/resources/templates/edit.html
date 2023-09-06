@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="../static/styles.css" th:href="@{/styles.css}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Passion+One&display=swap" rel="stylesheet">
+    <title>New Model</title>
+</head>
+<body>
+<div class="page">
+    <h1 class="main_title _title">Edit Model</h1>
+
+    <!-- Форма для ввода данных -->
+    <form th:action="@{/edit}" method="post">
+        <input type="hidden" th:name="modelName" th:value="${modelName}" />
+        <input type="hidden" th:name="id" name="id" th:value="${modelObject.id}" />
+
+        <!-- Поля ввода для модели House -->
+        <div th:if="${modelName == 'house'}">
+            <form th:action="@{/edit}" method="post" th:object="${modelObject}">
+                <div class="_container">
+                    <div class="_subtitle">House Details:</div>
+                    <label class="_text" for="type">House Type:</label>
+                    <input class="_input" type="text" id="type" name="value1" th:placeholder="${modelObject.type}" /><br>
+
+                    <label class="_text" for="street">House Street:</label>
+                    <input class="_input" type="text" id="street" name="value2" th:placeholder="${modelObject.street}" /><br>
+
+                    <label class="_text" for="number">House Number:</label>
+                    <input class="_input" type="text" id="number" name="value3" th:placeholder="${modelObject.number}" /><br>
+
+                    <label class="_text" for="owner">House Owner:</label>
+                    <input class="_input" type="text" id="owner" name="value4" th:placeholder="${modelObject.owner}" /><br>
+
+                    <label class="_text" for="constructionDate">House Construction Date:</label>
+                    <input class="_input" type="text" id="constructionDate" name="value5" th:placeholder="${modelObject.constructionDate}" /><br>
+
+                    <!-- Кнопка для добавления элемента в модель -->
+                    <button class="_button" type="submit">Edit</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Поля ввода для модели Person -->
+        <div th:if="${modelName == 'person'}">
+            <form th:action="@{/edit}" method="post" th:object="${modelObject}">
+                <div class="_container">
+                    <div class="_subtitle">Person Details:</div>
+                    <label class="_text" for="name">Name:</label>
+                    <input class="_input" type="text" id="name" name="value1" th:placeholder="${modelObject.surname}" /><br>
+
+                    <label class="_text" for="surname">Surname:</label>
+                    <input class="_input" type="text" id="surname" name="value2" th:placeholder="${modelObject.name}" /><br>
+
+                    <label class="_text" for="patronymic">Patronymic:</label>
+                    <input class="_input" type="text" id="patronymic" name="value3" th:placeholder="${modelObject.patronymic}" /><br>
+
+                    <label class="_text" for="age">Age:</label>
+                    <input class="_input" type="text" id="age" name="value4" th:placeholder="${modelObject.age}" /><br>
+
+                    <!-- Кнопка для добавления элемента в модель -->
+                    <button class="_button" type="submit">Edit</button>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- Поля ввода для модели Job -->
+        <div th:if="${modelName == 'job'}">
+            <form th:action="@{/edit}" method="post" th:object="${modelObject}">
+                <div class="_container">
+                    <div class="_subtitle">Job Details:</div>
+                    <label class="_text" for="jobName">Name:</label>
+                    <input class="_input" type="text" id="jobName" name="value1" th:placeholder="${modelObject.name}" /><br>
+
+                    <label class="_text" for="jobType">Type:</label>
+                    <input class="_input" type="text" id="jobType" name="value2" th:placeholder="${modelObject.type}" /><br>
+
+                    <label class="_text" for="slogan">Slogan:</label>
+                    <input class="_input" type="text" id="slogan" name="value3" th:placeholder="${modelObject.slogan}" /><br>
+
+                    <label class="_text" for="employees">Employees:</label>
+                    <input class="_input" type="text" id="employees" name="value4" th:placeholder="${modelObject.employees}" /><br>
+
+                    <label class="_text" for="budget">Budget:</label>
+                    <input class="_input" type="text" id="budget" name="value5" th:placeholder="${modelObject.budget}" /><br>
+
+                    <!-- Кнопка для добавления элемента в модель -->
+                    <button class="_button" type="submit">Edit</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Поля ввода для модели Pet -->
+        <div th:if="${modelName == 'pet'}">
+            <form th:action="@{/edit}" method="post" th:object="${modelObject}">
+                <div class="_container">
+                    <div class="_subtitle">Pet Details:</div>
+                    <label class="_text" for="petName">Name:</label>
+                    <input class="_input" type="text" id="petName" name="value1" th:placeholder="${modelObject.name}" /><br>
+
+                    <label class="_text" for="breed">Breed:</label>
+                    <input class="_input" type="text" id="breed" name="value2" th:placeholder="${modelObject.breed}" /><br>
+
+                    <label class="_text" for="petType">Type:</label>
+                    <input class="_input" type="text" id="petType" name="value3" th:placeholder="${modelObject.type}" /><br>
+
+                    <label class="_text" for="petAge">Age:</label>
+                    <input class="_input" type="text" id="petAge" name="value4" th:placeholder="${modelObject.age}" /><br>
+
+                    <label class="_text" for="gender">Gender:</label>
+                    <input class="_input" type="text" id="gender" name="value5" th:placeholder="${modelObject.gender}" /><br>
+
+                    <!-- Кнопка для добавления элемента в модель -->
+                    <button class="_button" type="submit">Edit</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Поля ввода для модели Transport -->
+        <div th:if="${modelName == 'transport'}">
+            <form th:action="@{/edit}" method="post" th:object="${modelObject}">
+                <div class="_container">
+                    <div class="_subtitle">Transport Details:</div>
+                    <label class="_text" for="transportType">Type:</label>
+                    <input class="_input" type="text" id="transportType" name="value1" th:placeholder="${modelObject.type}" /><br>
+
+                    <label class="_text" for="company">Company:</label>
+                    <input class="_input" type="text" id="company" name="value2" th:placeholder="${modelObject.company}" /><br>
+
+                    <label class="_text" for="model">Model:</label>
+                    <input class="_input" type="text" id="model" name="value3" th:placeholder="${modelObject.model}" /><br>
+
+                    <label class="_text" for="series">Series:</label>
+                    <input class="_input" type="text" id="series" name="value4" th:placeholder="${modelObject.series}" /><br>
+
+                    <label class="_text" for="color">Color:</label>
+                    <input class="_input" type="text" id="color" name="value5" th:placeholder="${modelObject.color}" /><br>
+
+                    <!-- Кнопка для добавления элемента в модель -->
+                    <button class="_button" type="submit">Edit</button>
+                </div>
+            </form>
+        </div>
+    </form>
+</div>
+</body>
+</html>
