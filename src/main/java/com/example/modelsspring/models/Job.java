@@ -1,11 +1,23 @@
 package com.example.modelsspring.models;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
+@Table(name = "Job")
 public class Job {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @NotBlank(message = "Please provide information")
     private String Name;
     private String Type;
+    @NotBlank(message = "Please provide information")
     private String Slogan;
+    @Size(min=1, message = "Field must contain min 1 symbol")
     private int Employees;
+    @Size(min=1, message = "Field must contain min 1 symbol")
     private int Budget;
 
     public Job(int id, String name, String type, String slogan, int employees, int budget) {
@@ -16,6 +28,8 @@ public class Job {
         Employees = employees;
         Budget = budget;
     }
+
+    public Job() {}
 
     public int getId() {
         return id;
