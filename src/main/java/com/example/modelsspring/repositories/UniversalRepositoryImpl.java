@@ -1,11 +1,10 @@
-package com.example.third_part.Repositories;
+package com.example.modelsspring.repositories;
 
-import com.example.third_part.Models.*;
+import com.example.modelsspring.models.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.naming.directory.SearchResult;
@@ -17,36 +16,36 @@ import java.util.Optional;
 
 @Repository
 public class UniversalRepositoryImpl implements UniversalRepository{
-    private final CommentRepository commentRepository;
-    private final FriendshipRepository friendshipRepository;
-    private final MessageRepository messageRepository;
-    private final PostRepository postRepository;
-    private final UserRepository userRepository;
+    private final HouseRepository houseRepository;
+    private final JobRepository jobRepository;
+    private final PersonRepository personRepository;
+    private final PetRepository petRepository;
+    private final TransportRepository transportRepository;
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public UniversalRepositoryImpl(CommentRepository commentRepository,
-                                   FriendshipRepository friendshipRepository,
-                                   MessageRepository messageRepository,
-                                   PostRepository postRepository,
-                                   UserRepository userRepository, Map<String, org.springframework.data.repository.Repository<?, ?>> repositoryMap ) {
-        this.commentRepository = commentRepository;
-        this.friendshipRepository = friendshipRepository;
-        this.messageRepository = messageRepository;
-        this.postRepository = postRepository;
-        this.userRepository = userRepository;
+    public UniversalRepositoryImpl(HouseRepository houseRepository,
+                                   JobRepository jobRepository,
+                                   PersonRepository personRepository,
+                                   PetRepository petRepository,
+                                   TransportRepository transportRepository, Map<String, org.springframework.data.repository.Repository<?, ?>> repositoryMap ) {
+        this.houseRepository = houseRepository;
+        this.jobRepository = jobRepository;
+        this.personRepository = personRepository;
+        this.petRepository = petRepository;
+        this.transportRepository = transportRepository;
         this.repositoryMap = repositoryMap;
     }
     private final Map<String, org.springframework.data.repository.Repository<?, ?>> repositoryMap;
     @Override
     public Optional<?> findEntityById(String modelName, Long id) {
         return switch (modelName) {
-            case "Comment" -> commentRepository.findById(id);
-            case "Friendship" -> friendshipRepository.findById(id);
-            case "Message" -> messageRepository.findById(id);
-            case "Post" -> postRepository.findById(id);
-            case "User" -> userRepository.findById(id);
+            case "Comment" -> houseRepository.findById(id);
+            case "Friendship" -> jobRepository.findById(id);
+            case "Message" -> personRepository.findById(id);
+            case "Post" -> petRepository.findById(id);
+            case "User" -> transportRepository.findById(id);
             default -> Optional.empty();
         };
     }
@@ -54,11 +53,11 @@ public class UniversalRepositoryImpl implements UniversalRepository{
     @Override
     public void saveEntity(String modelName, Object entity) {
         switch (modelName) {
-            case "Comment" -> commentRepository.save((Comment) entity);
-            case "Friendship" -> friendshipRepository.save((Friendship) entity);
-            case "Message" -> messageRepository.save((Message) entity);
-            case "Post" -> postRepository.save((Post) entity);
-            case "User" -> userRepository.save((User) entity);
+            case "Comment" -> houseRepository.save((House) entity);
+            case "Friendship" -> jobRepository.save((Job) entity);
+            case "Message" -> personRepository.save((Person) entity);
+            case "Post" -> petRepository.save((Pet) entity);
+            case "User" -> transportRepository.save((Transport) entity);
             default -> throw new IllegalArgumentException("Invalid model name");
         }
     }
@@ -92,13 +91,13 @@ public class UniversalRepositoryImpl implements UniversalRepository{
     @Override
     public List<SearchResult> searchEntities(String modelName, String fieldName, String fieldValue) throws ClassNotFoundException {
         String jpql = "SELECT e FROM " + modelName + " e WHERE e." + fieldName + " = :fieldValue";
-        Query query = entityManager.createQuery(jpql, Class.forName("com.example.third_part.Models." + modelName));
+        Query query = entityManager.createQuery(jpql, Class.forName("com.example.modelsspring.models." + modelName));
         query.setParameter("fieldValue", fieldValue);
         return query.getResultList();
     }
     private Class<?> getEntityClassByName(String modelName) {
         try {
-            return Class.forName("com.example.third_part.models." + modelName);
+            return Class.forName("com.example.modelsspring.models." + modelName);
         } catch (ClassNotFoundException e) {
             throw new IllegalArgumentException("Invalid model name: " + modelName);
         }
@@ -113,11 +112,11 @@ public class UniversalRepositoryImpl implements UniversalRepository{
             throw new IllegalArgumentException("Invalid model name");
         }*/
         switch (modelName) {
-            case "Comment" -> commentRepository.deleteById(id);
-            case "Friendship" -> friendshipRepository.deleteById(id);
-            case "Message" -> messageRepository.deleteById(id);
-            case "Post" -> postRepository.deleteById(id);
-            case "User" -> userRepository.deleteById(id);
+            case "Comment" -> houseRepository.deleteById(id);
+            case "Friendship" -> jobRepository.deleteById(id);
+            case "Message" -> personRepository.deleteById(id);
+            case "Post" -> petRepository.deleteById(id);
+            case "User" -> transportRepository.deleteById(id);
             default -> throw new IllegalArgumentException("Invalid model name");
         }
     }

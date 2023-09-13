@@ -2,6 +2,7 @@ package com.example.modelsspring.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -12,12 +13,13 @@ public class Job {
     private int id;
     @NotBlank(message = "Please provide information")
     private String Name;
+    @NotBlank(message = "Please provide information")
     private String Type;
     @NotBlank(message = "Please provide information")
     private String Slogan;
-    @Size(min=1, message = "Field must contain min 1 symbol")
+    @NotNull(message = "Please provide information")
     private int Employees;
-    @Size(min=1, message = "Field must contain min 1 symbol")
+    @NotNull(message = "Please provide information")
     private int Budget;
 
     public Job(int id, String name, String type, String slogan, int employees, int budget) {

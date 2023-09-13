@@ -2,6 +2,7 @@ package com.example.modelsspring.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -16,7 +17,7 @@ public class Transport {
     private String Company;
     @NotBlank(message = "Please provide information")
     private String Model;
-    @Size(min=1, message = "Field must contain min 1 symbol")
+    @NotNull(message = "Please provide information")
     private int Series;
     @NotBlank(message = "Please provide information")
     private String Color;

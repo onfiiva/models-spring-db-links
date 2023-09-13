@@ -1,10 +1,11 @@
-package com.example.third_part.Repositories;
+package com.example.modelsspring.repositories;
 
 
 import javax.naming.directory.SearchResult;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 public interface UniversalRepository {
     Optional<?> findEntityById(String modelName, Long id);
     void saveEntity(String modelName, Object entity);

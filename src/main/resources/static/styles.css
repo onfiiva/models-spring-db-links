@@ -48,9 +48,9 @@ form {
 ._container {
     display: flex;
     flex-direction: column;
-    /*align-content: center;
+    align-content: center;
     align-items: center;
-    justify-content: center;*/
+    justify-content: center;
     gap: 30px;
 }
 .page:is(:last-child){

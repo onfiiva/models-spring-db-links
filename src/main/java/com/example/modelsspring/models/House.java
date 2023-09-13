@@ -17,7 +17,7 @@ public class House {
     private String Type;
     @NotBlank(message = "Please provide information")
     private String Street;
-    @Size(min=1, message = "Field must contain min 1 symbol")
+    @NotNull(message = "Please provide information")
     private int Number;
     @NotBlank(message = "Please provide information")
     private String Owner;
