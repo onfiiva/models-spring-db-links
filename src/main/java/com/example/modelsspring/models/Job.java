@@ -22,13 +22,18 @@ public class Job {
     @NotNull(message = "Please provide information")
     private int Budget;
 
-    public Job(int id, String name, String type, String slogan, int employees, int budget) {
+    @OneToOne(optional = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_id")
+    private Person person;
+
+    public Job(int id, String name, String type, String slogan, int employees, int budget, Person person) {
         this.id = id;
         Name = name;
         Type = type;
         Slogan = slogan;
         Employees = employees;
         Budget = budget;
+        this.person = person;
     }
 
     public Job() {}
@@ -79,5 +84,13 @@ public class Job {
 
     public void setBudget(int budget) {
         Budget = budget;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

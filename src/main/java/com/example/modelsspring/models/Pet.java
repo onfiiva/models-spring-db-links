@@ -22,13 +22,18 @@ public class Pet {
     @NotBlank(message = "Please provide information")
     private String Gender;
 
-    public Pet(int id, String name, String breed, String type, int age, String gender) {
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
+
+    public Pet(int id, String name, String breed, String type, int age, String gender, Person person) {
         this.id = id;
         Name = name;
         Breed = breed;
         Type = type;
         Age = age;
         Gender = gender;
+        this.person = person;
     }
 
     public Pet() {}
@@ -79,5 +84,13 @@ public class Pet {
 
     public void setGender(String gender) {
         Gender = gender;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

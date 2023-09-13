@@ -22,13 +22,18 @@ public class Transport {
     @NotBlank(message = "Please provide information")
     private String Color;
 
-    public Transport(int id, String type, String company, String model, int series, String color) {
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
+
+    public Transport(int id, String type, String company, String model, int series, String color, Person person) {
         this.id = id;
         Type = type;
         Company = company;
         Model = model;
         Series = series;
         Color = color;
+        this.person = person;
     }
 
     public Transport() {}
@@ -79,5 +84,13 @@ public class Transport {
 
     public void setColor(String color) {
         Color = color;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

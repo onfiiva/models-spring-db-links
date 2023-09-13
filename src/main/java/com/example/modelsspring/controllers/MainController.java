@@ -57,6 +57,14 @@ public class MainController {
             return "error";
         }
 
+        if (modelObject instanceof Person) {
+            Person person = (Person) modelObject;
+            House house = person.getHouse();
+            Job job = person.getJob();
+            model.addAttribute("house", house);
+            model.addAttribute("job", job);
+        }
+
         model.addAttribute("modelObject", modelObject);
         model.addAttribute("modelName", modelName);
 

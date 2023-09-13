@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Person")
 public class Person {
@@ -20,12 +22,26 @@ public class Person {
     @NotNull(message = "Please provide information")
     private int Age;
 
-    public Person(int id, String surname, String name, String patronymic, int age) {
+    @OneToOne(optional = true, mappedBy = "person")
+    private House house;
+
+    @OneToOne(optional = true, mappedBy = "person")
+    private Job job;
+
+    @OneToMany(mappedBy = "person")
+    private List<Pet> pets;
+
+    @OneToMany(mappedBy = "person")
+    private List<Transport> transports;
+
+    public Person(int id, String surname, String name, String patronymic, int age, House house, Job job) {
         this.id = id;
         Surname = surname;
         Name = name;
         Patronymic = patronymic;
         Age = age;
+        this.house = house;
+        this.job = job;
     }
 
     public Person() {}
@@ -70,5 +86,35 @@ public class Person {
         Age = age;
     }
 
+    public House getHouse() {
+        return house;
+    }
 
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
+
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
+    }
+
+    public List<Transport> getTransports() {
+        return transports;
+    }
+
+    public void setTransports(List<Transport> transports) {
+        this.transports = transports;
+    }
 }
